@@ -121,7 +121,7 @@ class create_frame:
 		label = Label(self.f2)
 		label.grid(row=3, column=3)
 		cap = cv2.VideoCapture(0)
-		face_cascde = cv2.CascadeClassifier('haarcascade_numberplate.xml')
+		face_cascde = cv2.CascadeClassifier('model-notebook/haarcascade_numberplate.xml')
 		temp = 0
 		def show_frames():
 		   # Get the latest frame and convert into Image
@@ -131,7 +131,7 @@ class create_frame:
 
 			for (x,y,w,h) in face_rects: 
 				#cv2.rectangle(frame, (x,y), (x+w,y+h), (0,0,255), 2)
-				cv2.imwrite('img'+str(temp)+'.png', frame[y:y+h,x:x+w])
+				cv2.imwrite('images-live/img'+str(temp)+'.png', frame[y:y+h,x:x+w])
 				temp +=1
 				print(temp)
 				if(temp>10):

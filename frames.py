@@ -86,30 +86,30 @@ class create_frame:
 		label = Label(self.f2)
 		label.grid(row=3, column=3)
 		cap = cv2.VideoCapture(0)
-		face_cascde = cv2.CascadeClassifier('haarcascade_numberplate.xml')
+		face_cascde = cv2.CascadeClassifier('model-notebook/haarcascade_numberplate.xml')
 		def show_frames():
 		   # Get the latest frame and convert into Image
-		   ret, frame = cap.read()
-		   face_rects = face_cascde.detectMultiScale(frame,scaleFactor=1.3, minNeighbors=3)
-		   
-		   for (x,y,w,h) in face_rects: 
-        		cv2.rectangle(frame, (x,y), (x+w,y+h), (0,0,255), 4)
-        		cv2.imwrite('img.png', frame[y:y+h,x:x+w])
-        		#threading.Thread(target=self.show_img()).start()
-        		self.show_img()
-        		#time.sleep(100)
-        		
-		   cv2image= cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-		   #ret,cv2image = cap.read()
-		   img = Image.fromarray(cv2image)
-		   # Convert image to PhotoImage
-		   imgtk = ImageTk.PhotoImage(image = img)
-		   label.imgtk = imgtk
-		   label.configure(image=imgtk)
-		   # Repeat after an interval to capture continiously
-		   label.after(20, show_frames)
-		   self.f2.update()	
-		 
+			ret, frame = cap.read()
+			face_rects = face_cascde.detectMultiScale(frame,scaleFactor=1.3, minNeighbors=3)
+			
+			for (x,y,w,h) in face_rects: 
+				cv2.rectangle(frame, (x,y), (x+w,y+h), (0,0,255), 4)
+				cv2.imwrite('img.png', frame[y:y+h,x:x+w])
+				#threading.Thread(target=self.show_img()).start()
+				self.show_img()
+				#time.sleep(100)
+				
+			cv2image= cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+			#ret,cv2image = cap.read()
+			img = Image.fromarray(cv2image)
+			# Convert image to PhotoImage
+			imgtk = ImageTk.PhotoImage(image = img)
+			label.imgtk = imgtk
+			label.configure(image=imgtk)
+			# Repeat after an interval to capture continiously
+			label.after(20, show_frames)
+			self.f2.update()	
+			
 		show_frames()
 		self.f2.update()		
 
