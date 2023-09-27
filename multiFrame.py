@@ -60,10 +60,10 @@ class create_frame:
 		
 		#Button(self.f1,text = "Total",command = label_check).pack()
 		def exit_btn():
-        		tk.destroy()
-        		tk.update()
-        		#cv2.destroyAllWindows()
-        		cap.release()
+			tk.destroy()
+			tk.update()
+			#cv2.destroyAllWindows()
+			cap.release()
 			
 		Button(self.f1,text = "Exit ",command = exit_btn).pack()
 		f2 = Frame(tk,bd = 8,relief = GROOVE,bg = "white")
@@ -79,28 +79,28 @@ class create_frame:
 			#cap = cv2.VideoCapture(0)
 			face_cascde = cv2.CascadeClassifier('haarcascade_numberplate.xml')
 			def show_frames():
-			   # Get the latest frame and convert into Image
-			   ret, frame = cap.read()
-			   face_rects = face_cascde.detectMultiScale(frame,scaleFactor=1.3, minNeighbors=3)
-			   
-			   for (x,y,w,h) in face_rects:
-			   	 cv2.rectangle(frame, (x,y), (x+w,y+h), (0,0,255), 4)
-			   	 cv2.imwrite('img.png', frame[y:y+h,x:x+w])
-			   	 #threading.Thread(target=self.show_img()).start()
-			   	 show_img()
+				# Get the latest frame and convert into Image
+				ret, frame = cap.read()
+				face_rects = face_cascde.detectMultiScale(frame,scaleFactor=1.3, minNeighbors=3)
+				
+				for (x,y,w,h) in face_rects:
+					cv2.rectangle(frame, (x,y), (x+w,y+h), (0,0,255), 4)
+					cv2.imwrite('img.png', frame[y:y+h,x:x+w])
+					#threading.Thread(target=self.show_img()).start()
+					show_img()
 				#time.sleep(100)
 				
-			   cv2image= cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-			   #ret,cv2image = cap.read()
-			   img = Image.fromarray(cv2image)
-			   # Convert image to PhotoImage
-			   imgtk = ImageTk.PhotoImage(image = img)
-			   label.imgtk = imgtk
-			   label.configure(image=imgtk)
-			   # Repeat after an interval to capture continiously
-			   label.after(20, show_frames)
-			   f2.update()	
-			 
+				cv2image= cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+				#ret,cv2image = cap.read()
+				img = Image.fromarray(cv2image)
+				# Convert image to PhotoImage
+				imgtk = ImageTk.PhotoImage(image = img)
+				label.imgtk = imgtk
+				label.configure(image=imgtk)
+				# Repeat after an interval to capture continiously
+				label.after(20, show_frames)
+				f2.update()	
+				
 			show_frames()
 			#cap.release()
 			f2.update()
@@ -180,10 +180,10 @@ class create_frame:
 		self.s.set("default") 
 		self.l = Label(tk,textvariable = self.s).pack()
 		def exit_btn():
-        		tk.destroy()
-        		tk.update()
-        		#cv2.destroyAllWindows()
-        		cap.release()
+			tk.destroy()
+			tk.update()
+			#cv2.destroyAllWindows()
+			cap.release()
 		
 		def label_check():
 			self.s.set("changed") 
@@ -221,27 +221,27 @@ class create_frame:
 			label.pack()
 			face_cascde = cv2.CascadeClassifier('haarcascade_numberplate.xml')
 			def show_frames():
-			   # Get the latest frame and convert into Image
-			   ret, frame = cap.read()
-			   face_rects = face_cascde.detectMultiScale(frame,scaleFactor=1.3, minNeighbors=3)
-			   
-			   if self.flag==1:
-			   	self.flag = 0
-			   	for (x,y,w,h) in face_rects: 
-			   		cv2.imwrite('cap.png', frame[y:y+h,x:x+w])
-			   	show_text()
+				# Get the latest frame and convert into Image
+				ret, frame = cap.read()
+				face_rects = face_cascde.detectMultiScale(frame,scaleFactor=1.3, minNeighbors=3)
 				
-			   cv2image= cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-			   #ret,cv2image = cap.read()
-			   img = Image.fromarray(cv2image)
-			   # Convert image to PhotoImage
-			   imgtk = ImageTk.PhotoImage(image = img)
-			   label.imgtk = imgtk
-			   label.configure(image=imgtk)
-			   # Repeat after an interval to capture continiously
-			   label.after(20, show_frames)
-			   f2.update()	
-			 
+				if self.flag==1:
+					self.flag = 0
+				for (x,y,w,h) in face_rects: 
+					cv2.imwrite('cap.png', frame[y:y+h,x:x+w])
+				show_text()
+				
+				cv2image= cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+				#ret,cv2image = cap.read()
+				img = Image.fromarray(cv2image)
+				# Convert image to PhotoImage
+				imgtk = ImageTk.PhotoImage(image = img)
+				label.imgtk = imgtk
+				label.configure(image=imgtk)
+				# Repeat after an interval to capture continiously
+				label.after(20, show_frames)
+				f2.update()	
+				
 			show_frames()
 			#cap.release()
 			f2.update()	

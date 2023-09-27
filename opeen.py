@@ -14,10 +14,10 @@ class gui:
 		vid = cv2.VideoCapture(0)
   
 		while(True):
-		    ret,frame= vid.read()
-		    cv2.imshow('frame', frame)
-		    if cv2.waitKey(1) & 0xFF == ord('q'):
-		    	break
+			ret,frame= vid.read()
+			cv2.imshow('frame', frame)
+			if cv2.waitKey(1) & 0xFF == ord('q'):
+				break
 		  
 		vid.release()
 		cv2.destroyAllWindows()
@@ -34,16 +34,16 @@ class gui:
 
 		# Define function to show frame
 		def show_frames():
-		   # Get the latest frame and convert into Image
-		   cv2image= cv2.cvtColor(cap.read()[1],cv2.COLOR_BGR2RGB)
-		   #ret,cv2image = cap.read()
-		   img = Image.fromarray(cv2image)
-		   # Convert image to PhotoImage
-		   imgtk = ImageTk.PhotoImage(image = img)
-		   label.imgtk = imgtk
-		   label.configure(image=imgtk)
-		   # Repeat after an interval to capture continiously
-		   label.after(20, show_frames)
+			# Get the latest frame and convert into Image
+			cv2image= cv2.cvtColor(cap.read()[1],cv2.COLOR_BGR2RGB)
+			#ret,cv2image = cap.read()
+			img = Image.fromarray(cv2image)
+			# Convert image to PhotoImage
+			imgtk = ImageTk.PhotoImage(image = img)
+			label.imgtk = imgtk
+			label.configure(image=imgtk)
+			# Repeat after an interval to capture continiously
+			label.after(20, show_frames)
 
 		show_frames()
 		tk.mainloop()

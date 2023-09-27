@@ -88,7 +88,7 @@ def validateRotationAndRatio(rect):
 		angle = 90 + rect_angle
 
 	if angle>15:
-	 	return False
+		return False
 
 	if height == 0 or width == 0:
 		return False

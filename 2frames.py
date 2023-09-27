@@ -74,7 +74,7 @@ class create_frame:
 		l = cur.fetchall()
 		print(l)
 		for i in range(1,10):
-			t = "img"+str(i)+".png"
+			t = "images-live/"+"img"+str(i)+".png"
 			print(t)
 			image = Image.open(t)
 			photo = ImageTk.PhotoImage(image.resize((300, 200), Image.Resampling.LANCZOS) )# it is inavlid by pillow 10 Image.ANTIALIAS))
@@ -125,31 +125,31 @@ class create_frame:
 		temp = 0
 		def show_frames():
 		   # Get the latest frame and convert into Image
-		   nonlocal temp
-		   ret, frame = cap.read()
-		   face_rects = face_cascde.detectMultiScale(frame,scaleFactor=1.1, minNeighbors=3)
-	
-		   for (x,y,w,h) in face_rects: 
-        		#cv2.rectangle(frame, (x,y), (x+w,y+h), (0,0,255), 2)
-        		cv2.imwrite('img'+str(temp)+'.png', frame[y:y+h,x:x+w])
-        		temp +=1
-        		print(temp)
-        		if(temp>10):
-        			threading.Thread(target=self.show_img()).start()
-        			#self.show_img()
-        			temp = 0
-        		
-		   cv2image= cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-		   #ret,cv2image = cap.read()
-		   img = Image.fromarray(cv2image)
-		   # Convert image to PhotoImage
-		   imgtk = ImageTk.PhotoImage(image = img)
-		   label.imgtk = imgtk
-		   label.configure(image=imgtk)
-		   # Repeat after an interval to capture continiously
-		   label.after(20, show_frames)
-		   self.f2.update()	
-		 
+			nonlocal temp
+			ret, frame = cap.read()
+			face_rects = face_cascde.detectMultiScale(frame,scaleFactor=1.1, minNeighbors=3)
+
+			for (x,y,w,h) in face_rects: 
+				#cv2.rectangle(frame, (x,y), (x+w,y+h), (0,0,255), 2)
+				cv2.imwrite('img'+str(temp)+'.png', frame[y:y+h,x:x+w])
+				temp +=1
+				print(temp)
+				if(temp>10):
+					threading.Thread(target=self.show_img()).start()
+					#self.show_img()
+					temp = 0
+				
+			cv2image= cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+			#ret,cv2image = cap.read()
+			img = Image.fromarray(cv2image)
+			# Convert image to PhotoImage
+			imgtk = ImageTk.PhotoImage(image = img)
+			label.imgtk = imgtk
+			label.configure(image=imgtk)
+			# Repeat after an interval to capture continiously
+			label.after(20, show_frames)
+			self.f2.update()	
+			
 		show_frames()
 		self.f2.update()		
 
