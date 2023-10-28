@@ -1,2 +1,4 @@
 *.db*
 pythread.py
+*.env*
+*passed.txt*

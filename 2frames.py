@@ -95,12 +95,13 @@ class create_frame:
 		try:
 			s = smtplib.SMTP('smtp.gmail.com', 587)
 			s.starttls()
-			 
-			s.login("anprsys@gmail.com", "hrunzgcqpxrqbyzi")
+			EMAIL=''
+			PASSWORD = '' 
+			s.login(EMAIL, PASSWORD)
 			 
 			message = "Invalid vechile entered"
-			 
-			s.sendmail("anprsys@gmail.com", "jainv6464@gmail.com", message)
+			RECIEVER_MAIL =''
+			s.sendmail(EMAIL, RECIEVER_MAIL, message)
 			 
 			s.quit()
 		except:
